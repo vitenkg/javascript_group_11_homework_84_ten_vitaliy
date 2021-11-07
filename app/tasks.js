@@ -6,8 +6,10 @@ const {param} = require("express/lib/router");
 const router = express.Router();
 
 router.get('/', auth, async (req, res) => {
+
     try {
-        const users = await Task.find();
+        const users = await Task.find({name: req.user.name});
+
         res.send(users);
     } catch (e) {
         res.sendStatus(500);
