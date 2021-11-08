@@ -6,7 +6,6 @@ const {param} = require("express/lib/router");
 const router = express.Router();
 
 router.get('/', auth, async (req, res) => {
-    console.log(req.user);
     try {
         const users = await Task.find({name: req.user.name});
 
@@ -35,7 +34,6 @@ router.post('/', auth, async (req, res) => {
         await task.save();
         res.send(task);
     } catch (e) {
-        // console.log('Have a error', e);
         res.status(500).send(e);
     }
 });
@@ -54,7 +52,6 @@ router.put('/:id', auth, async (req, res) => {
         await Task.findByIdAndUpdate(req.params.id, taskEdit);
         res.send(taskEdit);
     } catch (e) {
-        // console.log('Have a error', e);
         res.status(500).send(e);
     }
 });
