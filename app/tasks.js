@@ -6,7 +6,7 @@ const {param} = require("express/lib/router");
 const router = express.Router();
 
 router.get('/', auth, async (req, res) => {
-
+    console.log(req.user);
     try {
         const users = await Task.find({name: req.user.name});
 

@@ -13,7 +13,11 @@ const auth = async (req, res, next) => {
         return res.status(401).send({error: "Wrong token"});
     }
 
-    req.user = user;
+    req.user = {
+        username: user.username,
+        token: user.token,
+        _id: user._id
+    };
 
     next();
 };
