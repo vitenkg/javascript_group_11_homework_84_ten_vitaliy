@@ -3,16 +3,6 @@ const User = require('../models/User');
 
 const router = express.Router();
 
-router.get('/', async (req, res) => {
-    try {
-        const users = await User.find();
-        res.send(users);
-    } catch (e) {
-        res.sendStatus(500);
-    }
-
-});
-
 router.post('/', async (req, res) => {
     if (!req.body.username || !req.body.password) {
         return res.status(400).send({error: 'Data No Valid'});
